@@ -61,7 +61,7 @@ output "db_instance_username" {
 
 output "db_instance_password" {
   description = "The database password (this password may be old, because Terraform doesn't track it after initial creation)"
-  value       = local.master_password
+  value       = local.password
   sensitive   = true
 }
 
@@ -116,8 +116,11 @@ output "db_option_group_arn" {
   value       = module.db_option_group.db_option_group_arn
 }
 
-output "db_master_password" {
-  description = "The master password"
-  value       = module.db_instance.db_instance_master_password
-  sensitive   = true
+################################################################################
+# CloudWatch Log Group
+################################################################################
+
+output "db_instance_cloudwatch_log_groups" {
+  description = "Map of CloudWatch log groups created and their attributes"
+  value       = module.db_instance.db_instance_cloudwatch_log_groups
 }

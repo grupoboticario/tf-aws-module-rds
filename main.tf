@@ -1,16 +1,16 @@
 locals {
-  master_password      = var.create_db_instance && var.create_random_password ? random_password.master_password[0].result : var.password
-  db_subnet_group_name = !var.cross_region_replica && var.replicate_source_db != null ? null : coalesce(var.db_subnet_group_name, module.db_subnet_group.db_subnet_group_id, var.identifier)
+  create_random_password = var.create_db_instance && var.create_random_password
+  password               = local.create_random_password ? random_password.master_password[0].result : var.password
 
+  db_subnet_group_name    = var.create_db_subnet_group ? module.db_subnet_group.db_subnet_group_id : var.db_subnet_group_name
   parameter_group_name_id = var.create_db_parameter_group ? module.db_parameter_group.db_parameter_group_id : var.parameter_group_name
 
   create_db_option_group = var.create_db_option_group && var.engine != "postgres"
   option_group           = local.create_db_option_group ? module.db_option_group.db_option_group_id : var.option_group_name
 }
 
-# Random string to use as master password
 resource "random_password" "master_password" {
-  count = var.create_db_instance && var.create_random_password ? 1 : 0
+  count = local.create_random_password ? 1 : 0
 
   length  = var.random_password_length
   special = false
@@ -77,9 +77,9 @@ module "db_instance" {
   kms_key_id        = var.kms_key_id
   license_model     = var.license_model
 
-  name                                = var.name
+  db_name                             = var.db_name
   username                            = var.username
-  password                            = local.master_password
+  password                            = local.password
   port                                = var.port
   domain                              = var.domain
   domain_iam_role_name                = var.domain_iam_role_name
@@ -104,25 +104,30 @@ module "db_instance" {
   snapshot_identifier              = var.snapshot_identifier
   copy_tags_to_snapshot            = var.copy_tags_to_snapshot
   skip_final_snapshot              = var.skip_final_snapshot
-  final_snapshot_identifier        = var.final_snapshot_identifier
   final_snapshot_identifier_prefix = var.final_snapshot_identifier_prefix
 
   performance_insights_enabled          = var.performance_insights_enabled
   performance_insights_retention_period = var.performance_insights_retention_period
   performance_insights_kms_key_id       = var.performance_insights_enabled ? var.performance_insights_kms_key_id : null
 
-  replicate_source_db     = var.replicate_source_db
-  backup_retention_period = var.backup_retention_period
-  backup_window           = var.backup_window
-  max_allocated_storage   = var.max_allocated_storage
-  monitoring_interval     = var.monitoring_interval
-  monitoring_role_arn     = var.monitoring_role_arn
-  monitoring_role_name    = var.monitoring_role_name
-  create_monitoring_role  = var.create_monitoring_role
+  replicate_source_db         = var.replicate_source_db
+  replica_mode                = var.replica_mode
+  backup_retention_period     = var.backup_retention_period
+  backup_window               = var.backup_window
+  max_allocated_storage       = var.max_allocated_storage
+  monitoring_interval         = var.monitoring_interval
+  monitoring_role_arn         = var.monitoring_role_arn
+  monitoring_role_name        = var.monitoring_role_name
+  monitoring_role_description = var.monitoring_role_description
+  create_monitoring_role      = var.create_monitoring_role
 
-  character_set_name              = var.character_set_name
-  timezone                        = var.timezone
-  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
+  character_set_name = var.character_set_name
+  timezone           = var.timezone
+
+  enabled_cloudwatch_logs_exports        = var.enabled_cloudwatch_logs_exports
+  create_cloudwatch_log_group            = var.create_cloudwatch_log_group
+  cloudwatch_log_group_retention_in_days = var.cloudwatch_log_group_retention_in_days
+  cloudwatch_log_group_kms_key_id        = var.cloudwatch_log_group_kms_key_id
 
   timeouts = var.timeouts
 

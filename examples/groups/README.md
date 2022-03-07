@@ -19,8 +19,8 @@ Note that this example may create resources which cost money. Run `terraform des
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2.49 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0 |
 
 ## Providers
 
@@ -30,11 +30,11 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_byo_mysql"></a> [byo\_mysql](#module\_byo\_mysql) | ../../ |  |
-| <a name="module_default_mysql"></a> [default\_mysql](#module\_default\_mysql) | ../../ |  |
-| <a name="module_default_mysql_default_aws"></a> [default\_mysql\_default\_aws](#module\_default\_mysql\_default\_aws) | ../../ |  |
-| <a name="module_default_mysql_name"></a> [default\_mysql\_name](#module\_default\_mysql\_name) | ../../ |  |
-| <a name="module_default_postgres"></a> [default\_postgres](#module\_default\_postgres) | ../../ |  |
+| <a name="module_byo_mysql"></a> [byo\_mysql](#module\_byo\_mysql) | ../../ | n/a |
+| <a name="module_default_mysql"></a> [default\_mysql](#module\_default\_mysql) | ../../ | n/a |
+| <a name="module_default_mysql_default_aws"></a> [default\_mysql\_default\_aws](#module\_default\_mysql\_default\_aws) | ../../ | n/a |
+| <a name="module_default_mysql_name"></a> [default\_mysql\_name](#module\_default\_mysql\_name) | ../../ | n/a |
+| <a name="module_default_postgres"></a> [default\_postgres](#module\_default\_postgres) | ../../ | n/a |
 
 ## Resources
 

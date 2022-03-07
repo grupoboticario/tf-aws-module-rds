@@ -1,10 +1,76 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
-<a name="unreleased"></a>
-## [Unreleased]
+### [4.1.3](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v4.1.2...v4.1.3) (2022-02-23)
 
+
+### Bug Fixes
+
+* Correct random password lifecycle by eagerly creating random password value ([#388](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/388)) ([b41a0a5](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/b41a0a5ef6d3b8ee590ec22507c3af85df985521))
+
+### [4.1.2](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v4.1.1...v4.1.2) (2022-02-18)
+
+
+### Bug Fixes
+
+* Correct usage of `password` and allow restored snapshots to set password, username, etc. ([#384](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/384)) ([81db512](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/81db51292cbbb1a23b3649814691498514fbd273))
+
+### [4.1.1](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v4.1.0...v4.1.1) (2022-02-17)
+
+
+### Bug Fixes
+
+* Remove check for `is_mssql` which is no longer valid ([#382](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/382)) ([f4481e6](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/f4481e6f4c21452840627b8cd229753229c04e5c))
+
+## [4.1.0](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v4.0.0...v4.1.0) (2022-02-17)
+
+
+### Features
+
+* Add support for managing CloudWatch log groups ([#380](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/380)) ([761fb7f](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/761fb7f5b8d7bb8ae99c54d8fa143c40d0772c0a))
+
+## [4.0.0](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.5.0...v4.0.0) (2022-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update default values for security posture improvement (#369)
+
+### Features
+
+* Update default values for security posture improvement ([#369](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/369)) ([9149ec1](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/9149ec147327fbe5a7675ac48e9e641b5d7ec6e1))
+
+## [3.5.0](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.4.2...v3.5.0) (2022-01-12)
+
+
+### Features
+
+* Added `latest_restorable_time` to ignore_changes ([#356](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/356)) ([77902c2](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/77902c21414f24026d720e72068e589b3855fab8))
+
+### [3.4.2](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.4.1...v3.4.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* update CI/CD process to align auto-release workflow ([#366](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/366)) ([e38aace](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/e38aaced17278567973dad4980fae8757d6a1265))
+
+# Changelog
+
+All notable changes to this project will be documented in this file
+
+## [3.4.1](https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.4.0...v3.4.1) (2021-11-07)
+
+
+### Bug Fixes
+
+* update CI/CD process to use composite actions and auto-release workflow ([#361](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/361)) ([123ea2a](https://github.com/terraform-aws-modules/terraform-aws-rds/commit/123ea2a136c913de0588d4820b291eb4d1d74d61))
+
+<a name="v3.4.0"></a>
+## [v3.4.0] - 2021-09-07
+
+- feat: Add new parameter monitoring_role_description ([#350](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/350))
+- docs: create_option_group -> create_db_option_group in README ([#348](https://github.com/terraform-aws-modules/terraform-aws-rds/issues/348))
 
 
 <a name="v3.3.0"></a>
@@ -727,7 +793,8 @@ All notable changes to this project will be documented in this file.
 - Initial commit
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.4.0...HEAD
+[v3.4.0]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.3.0...v3.4.0
 [v3.3.0]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.2.0...v3.3.0
 [v3.2.0]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/terraform-aws-modules/terraform-aws-rds/compare/v3.0.0...v3.1.0
