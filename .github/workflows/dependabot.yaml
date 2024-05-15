@@ -1,0 +1,22 @@
+name: Update Dependabot Config File
+
+on:
+  - pull_request
+
+permissions:
+  contents: write
+  pull-requests: read
+  deployments: write
+
+jobs:
+  updateDependabotCfgFile:
+    runs-on: [self-hosted, core-shr]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Update Dependabot Config File
+        uses: grupoboticario/actions-tf-dependabot@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

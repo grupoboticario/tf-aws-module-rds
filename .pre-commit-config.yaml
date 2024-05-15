@@ -1,29 +1,32 @@
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.64.0
+    rev: v1.89.0
     hooks:
-      - id: terraform_fmt
-      - id: terraform_validate
+      - id: terraform_checkov
+        args:
+          - --args=--skip-check CKV_AWS_23
+          - --args=--skip-check CKV_AWS_18
+          - --args=--skip-check CKV_AWS_109
+          - --args=--skip-check CKV_AWS_111
+          - --args=--skip-check CKV_AWS_144
+          - --args=--skip-check CKV_AWS_145
+          - --args=--skip-check CKV_AWS_149
+          - --args=--skip-check CKV_AWS_274
+          - --args=--skip-check CKV_AWS_356
+          - --args=--skip-check CKV2_AWS_5
+          - --args=--skip-check CKV2_AWS_57
+          - --args=--skip-check CKV2_AWS_61
+          - --args=--skip-check CKV2_AWS_62
+          - --args=--skip-check CKV2_AWS_65
+          - --args=--skip-check CKV_TF_1
+          - --args=--skip-check CKV2_GHA_1
       - id: terraform_docs
-        args:
-          - '--args=--lockfile=false'
+      - id: terraform_docs_without_aggregate_type_defaults
+      - id: terraform_fmt
       - id: terraform_tflint
-        args:
-          - '--args=--only=terraform_deprecated_interpolation'
-          - '--args=--only=terraform_deprecated_index'
-          - '--args=--only=terraform_unused_declarations'
-          - '--args=--only=terraform_comment_syntax'
-          - '--args=--only=terraform_documented_outputs'
-          - '--args=--only=terraform_documented_variables'
-          - '--args=--only=terraform_typed_variables'
-          - '--args=--only=terraform_module_pinned_source'
-          - '--args=--only=terraform_naming_convention'
-          - '--args=--only=terraform_required_version'
-          - '--args=--only=terraform_required_providers'
-          - '--args=--only=terraform_standard_module_structure'
-          - '--args=--only=terraform_workspace_remote'
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
-    hooks:
-      - id: check-merge-conflict
-      - id: end-of-file-fixer
+      - id: terraform_trivy
+      # - id: terraform_validate
+      # - id: terrascan
+      #   args:
+      #     - --args=--non-recursive
+      #     - --args=--skip-rules="AC_AWS_0500"

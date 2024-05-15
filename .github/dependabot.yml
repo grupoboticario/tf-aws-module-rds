@@ -1,0 +1,17 @@
+version: 2
+
+registries:
+  github-grupoboticario:
+    type: git
+    url: https://github.com
+    username: x-access-token
+    password: ${{ secrets.GB_TERRAFORM_API_TOKEN }}
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    open-pull-requests-limit: 10
+    schedule:
+      interval: weekly
+
+updates:
